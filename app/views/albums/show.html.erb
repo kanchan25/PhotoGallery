@@ -1,0 +1,32 @@
+<p>
+  <%= image_tag @album.cover.url %>	
+  <strong>Title:</strong>
+  <%= @album.title %>
+  <%= link_to 'Create New Picture',new_album_picture_path(@album)%><br>
+
+  <table>
+  	<tr>
+      <th><h2>Pictures</h2></th>
+    </tr>
+
+    <% @pictures.each do |picture| %>
+    <tr>
+      <td><%= image_tag picture.image.url %></td>
+      <td><%= link_to 'Destroy', album_picture_path(@album, picture),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+       
+    </tr>
+  <% end %>
+  </table>
+  
+  <%= form_with scope: :picture, local: true do |form| %>
+    <p>
+      <%= form.label :Tag %><br>
+      <%= form.text_field :title %>
+    </p>
+  <% end %>
+  <%= paginate @pictures %>
+  <%= link_to 'Back',albums_path(@album)%>
+ 
+</p>
